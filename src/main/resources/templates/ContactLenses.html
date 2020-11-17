@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ContactLenses</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    /*dropdown*/
+    .dropdown {position: relative;display: inline-block;}
+    .dropdown-content {display: none;position: absolute;background-color: #f1f1f1;min-width: 160px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 1;}
+    .dropdown-content a {color: sandybrown;padding: 12px 16px;text-decoration: none;display: block;}
+    .dropdown-content a:hover {background-color: #ddd;}
+    .dropdown:hover .dropdown-content {display: block;}
+    /*dropdown*/
+    /*footer*/
+    .footer-links{color: #fff3cd}
+    .footer-links:hover{color: saddlebrown}
+    .fa {color: saddlebrown}
+    .text-uppercase{color: saddlebrown}
+    /*footer*/
+    /*body*/
+    .voved {position:relative;width: 50%;}
+    .image {display: block;width: 100%;height: auto;}
+    .overlay {position: absolute;bottom: 0;left: 0;right: 0;background-color: rgba(255, 110, 25, 0.7);;overflow: hidden;width: 100%;height: 0;transition: .5s ease;}
+    .voved:hover .overlay {height: 100%;}
+    .text {color: white;font-size: 20px;position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);text-align: center;}
+    body {font-family: 'Montserrat', sans-serif;color: #333;}
+    #myTabContent {margin-top: 50px;}
+    .menu_tab {width: auto;margin: 0 auto;}
+    .single_menu_list {position: relative;padding-left: 250px;margin-bottom: 110px;}
+    .single_menu_list img {max-width: 45%;position: absolute;left: 0px;top: 0;padding: 3px;border-radius: 50%;transition: .4s}
+    .single_menu_list:hover img {border-radius: 0;transition: .4s}
+    .single_menu_list h4 {font-size: 20px;border-bottom: 1px;padding-bottom: 15px;margin-bottom: 10px; color: saddlebrown}
+    .imgBazhe {
+        width: 250px;
+        height: 200px;
+    }
+    /*body*/
+</style>
+<body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!--Header-->
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: orange">
+    <a class="navbar-brand text-white font-weight-lighter" href="/home">Oптика ТРИ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse font-weight-lighter" id="navbarNav">
+        <div class="container-fluid justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="/home">Почетна<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a href="#"  class="btpn nav-link text-white">Очила</a>
+                        <div class="dropdown-content">
+                            <a href="/sunglasses">Очила за Сонце</a>
+                            <a href="/dioptric">Диоптриски Очила</a>
+                            <a href="/children">Очила за деца</a>
+                            <a href="/lenses">Леќи</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  text-white" href="/us">За Нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  text-white " href="Cart" tabindex="-1" aria-disabled="true">Кошничка  <i class="fa fa-shopping-cart" ></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--Header-->
+<div class="container mt-4">
+    <div class="voved">
+        <img src="src/main/resources/static/img/lenses.jpg" th:src="@{img/lenses.jpg}" alt="Avatar" class="image">
+        <div class="overlay">
+            <div class="text font-weight-lighter">Контакни Леќи</div>
+        </div>
+    </div>
+    <hr class="w-75">
+    <!--PROIZVODI-->
+    <section class="menu_list mt-60 mb-60">
+        <div class="row">
+            <ul class="nav nav-tabs menu_tab" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a style="color: #FF5E18" class="nav-link" href="/brL">Леќи</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <a  style="color: saddlebrown" href="/new" class="align-items-center" ><button type="button" class="btn btn-sm btn-success">Креирај Продукт</button></a>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="single_menu_list" th:each="p : ${products}">
+                        <img  src="src/main/resources/static/" th:src="${p.getImage()}" class="imgBazhe">
+                        <div class="menu_content">
+                            <h4  th:text="${p.getName()}"></h4>
+                            <h6 style="color: #ffc107" th:text="${p.getDescription()}"></h6>
+                            <hr class="w-100">
+                            <span th:text="${p.getPrice()}" style="color: #ffc107"></span>
+                            <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                <a  th:href="@{'/edit/'+ ${p.id}}"><button type="button" class="btn btn-light">Измени</button></a>
+                                <a th:href="@{'/delete/'+ ${p.id}}"><button type="button" class="btn btn-light">Избриши</button></a>
+                                <button type="button" class="btn btn-light"><i class="fa fa-shopping-cart"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--PROIZVODI-->
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small" style="background-color: orange">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3 text-white">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-4 mt-3">
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-lighter">Оптика Три</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>Продажба и изработка на диоптриски очила, на контактни леќи, очила за сонце и помошен прибор</p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-lighter">Очила</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="footer-links" href="/sunglasses">Очила за Сонце</a>
+                </p>
+                <p>
+                    <a class="footer-links" href="/dioptric">Диоптриски Очила</a>
+                </p>
+                <p>
+                    <a class="footer-links" href="/children">Очила за деца</a>
+                </p>
+                <p>
+                    <a class="footer-links" href="/lenses">Леќи</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-lighter">Брзи Линкови</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="footer-links" href="/home">Почетна</a>
+                </p>
+                <p>
+                    <a class="footer-links" href="/us">За Нас</a>
+                </p>
+                <p>
+                    <a class="footer-links" href="Cart">Кошничка</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-3 font-weight-lighter">
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-lighter">Контакт</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Ул.Иван Козарев бр.24 /стара рампа,Скопје</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i>optikatridooel@gmail.com
+                </p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i>  070 843 642 /32 56 636</p>
+                <p>
+                    <i class="fa fa-clock-o mr-3"></i> Работни часови 9:00-7:00
+                </p>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+    <div>
+        <hr class="w-75">
+        <div class="container">
+            <!-- Grid row-->
+            <div class="row py-4 d-flex align-items-center">
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+                    <!-- Facebook -->
+                    <a class="fb-ic">
+                        <a href="https://www.facebook.com/optikatri/" ><i class="fa fa-facebook-f mr-4"> </i></a>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <a href="https://www.instagram.com/optika.tri/" ><i class="fa fa-instagram"> </i></a>
+                    </a>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row-->
+        </div>
+    </div>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-white py-3">© 2020 Сите права се резервирани:
+        <a class="footer-links" href="#"> Оптика ТРИ</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+</html>
