@@ -2,10 +2,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AllProducts</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <style>
     /*dropdown*/
@@ -21,6 +22,16 @@
     .fa {color: saddlebrown}
     .text-uppercase{color: saddlebrown}
     /*footer*/
+    /*body*/
+    body {font-family: 'Montserrat', sans-serif;color: #333;}
+    .nav-item a {color: #ffc107;}
+    .menu_tab .nav-tabs{color: #FF5E18;border-color: #FF5E18;}
+    .single_menu_list {position: relative;padding-left: 250px;margin-bottom: 110px;}
+    .single_menu_list img {max-width: 45%;position: absolute;left: 0px;top: 0;padding: 3px;border-radius: 50%;transition: .4s}
+    .single_menu_list:hover img {border-radius: 0;transition: .4s}
+    .single_menu_list h4 {font-size: 20px;border-bottom: 1px;padding-bottom: 15px;margin-bottom: 10px;color: saddlebrown}
+    .a :hover {color: #ffc107;}
+    .imgBazhe {width: 250px;height: 170px;}
 </style>
 <body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -61,55 +72,32 @@
     </div>
 </nav>
 <!--Header-->
-<div class="container justify-content-center">
-<form action="#" th:action="@{/save}"  th:object="${product}" method="post">
-    <div class="form-group">
-        <label>Product ID:</label>
-        <input type="text" th:field="*{id}" class="form-control" id="exampleInputId" placeholder="Enter Id">
-    </div>
-    <div class="form-group">
-        <label>Product Name:</label>
-        <input type="text" th:field="*{name}" class="form-control" id="exampleInputName" placeholder="Enter Name">
-    </div>
-    <div class="form-group">
-        <label >Description:</label>
-        <textarea class="form-control" th:field="*{description}" id="exampleInputDesc" rows="2"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Image</label>
-        <input type="file"th:field="*{image}"  class="form-control-file" id="exampleFormControlFile1">
-    </div>
-    <div class="form-group">
-        <label>Price:</label>
-        <input type="text" th:field="*{price}" class="form-control" id="exampleInputPrice" placeholder="Enter Price">
-    </div>
 
-    <div class="form-group">
-        <label>Brand</label>
-        <select th:field="*{brand.id}" class="form-control">
-            <option
-                    th:selected="${product.getBrand() != null && product.getBrand().getId() == b.getId()}"
-                    th:each="b : ${brand}"
-                    th:value="${b.getId()}"
-                    th:text="${b.getName()}">
-            </option>
-        </select>
-    </div>
 
-    <div class="form-group">
-        <label>Category</label>
-        <select th:field="*{category.id}" class="form-control">
-            <option
-                    th:selected="${product.getCategory() != null && product.getCategory().getId() == c.getId()}"
-                    th:each="c : ${category}"
-                    th:value="${c.getId()}"
-                    th:text="${c.getName()}">
-            </option>
-        </select>
+
+<div class="container">
+    <img  class="mt-5 mb-5 ml-5 mr-5" src="https://images.unsplash.com/photo-1534078477103-9f6a18b3a5e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
+    <hr class="w-75">
+<div class="row">
+    <div class="col-md-12">
+        <div class="single_menu_list" th:each="p : ${listProducts}">
+            <img  src="src/main/resources/static/" th:src="${p.getImage()}" class="imgBazhe">
+            <div class="menu_content">
+                <h4  th:text="${p.getName()}"></h4>
+                <h6 style="color: #ffc107"  th:text="${p.getDescription()}"></h6>
+                <hr class="w-100">
+                <span th:text="${p.getPrice()}" style="color: #ffc107"></span>
+                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                    <a  th:href="@{'/edit/'+ ${p.id}}"><button type="button" class="btn btn-light">Измени</button></a>
+                    <a th:href="@{'/delete/'+ ${p.id}}"><button type="button" class="btn btn-light">Избриши</button></a>
+                    <button type="button" class="btn btn-light"><i class="fa fa-shopping-cart"></i> </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit"  class="btn btn-primary">Save</button>
-</form>
 </div>
+</div>
+
 <!-- Footer -->
 <footer class="page-footer font-small" style="background-color: orange">
 

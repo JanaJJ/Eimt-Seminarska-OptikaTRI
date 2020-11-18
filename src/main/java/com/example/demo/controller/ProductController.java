@@ -30,8 +30,6 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private BrandService brandService;
-    @Autowired
-    private ProductRepository productRepository;
 
 
     //vrati home
@@ -54,6 +52,14 @@ public class ProductController {
     public String viewCart(){
         return "Cart";
     }
+
+    //vrati gi site proizvodi
+    @RequestMapping("/allP")
+    public String findAllProducts(Model model){
+        List<Product> products=productService.findAllProducts();
+        model.addAttribute("listProducts",products);
+        return "Allproducts";
+    }
     //kreiraj nov produkt
     @RequestMapping("/new")
     public String showNewProduct(Model model){
@@ -65,13 +71,20 @@ public class ProductController {
         model.addAttribute("brand",brand);
         return "new_p";
     }
+//    //zacuvaj produkti
+//    @RequestMapping(value = "/save/{catId}",method = RequestMethod.POST)
+//    public String saveForProduct(@ModelAttribute("product") Product product,@PathVariable Long catId){
+//        productService.saveProduct(product);
+//        productService.findAllByCategory(catId);
+//
+//        return "redirect:/home";
+//    }
     //zacuvaj produkti
-    @RequestMapping(value = "/save/{catId}",method = RequestMethod.POST)
-    public String saveForProduct(@ModelAttribute("product") Product product,@PathVariable Long catId){
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    public String saveForProduct(@ModelAttribute("product") Product product){
         productService.saveProduct(product);
-        productService.findAllByCategory(catId);
 
-        return "redirect:/home";
+        return "redirect:/allP";
     }
     //izmeni produkti
     @RequestMapping("/edit/{id}")
@@ -90,7 +103,7 @@ public class ProductController {
     public String deleteProducts(@PathVariable(name = "id")Long id)
     {
         productService.deleteProduct(id);
-        return "redirect:/home";
+        return "redirect:/allP";
     }
 
     //////////////////////////////////////////////////////////////////////////
