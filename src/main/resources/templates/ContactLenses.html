@@ -34,10 +34,7 @@
     .single_menu_list img {max-width: 45%;position: absolute;left: 0px;top: 0;padding: 3px;border-radius: 50%;transition: .4s}
     .single_menu_list:hover img {border-radius: 0;transition: .4s}
     .single_menu_list h4 {font-size: 20px;border-bottom: 1px;padding-bottom: 15px;margin-bottom: 10px; color: saddlebrown}
-    .imgBazhe {
-        width: 250px;
-        height: 200px;
-    }
+    .imgP {width: 250px;height: 200px;}
     /*body*/
 </style>
 <body>
@@ -70,9 +67,6 @@
                 <li class="nav-item">
                     <a class="nav-link  text-white" href="/us">За Нас</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link  text-white " href="Cart" tabindex="-1" aria-disabled="true">Кошничка  <i class="fa fa-shopping-cart" ></i></a>
-                </li>
             </ul>
         </div>
     </div>
@@ -102,7 +96,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="single_menu_list" th:each="p : ${products}">
-                        <img  src="src/main/resources/static/" th:src="${p.getImage()}" class="imgBazhe">
+                        <img  src="src/main/resources/static/" th:src="${p.getImage()}" class="imgP">
                         <div class="menu_content">
                             <h4  th:text="${p.getName()}"></h4>
                             <h6 style="color: #ffc107" th:text="${p.getDescription()}"></h6>
@@ -111,7 +105,16 @@
                             <div class="btn-group float-right" role="group" aria-label="Basic example">
                                 <a  th:href="@{'/edit/'+ ${p.id}}"><button type="button" class="btn btn-light">Измени</button></a>
                                 <a th:href="@{'/delete/'+ ${p.id}}"><button type="button" class="btn btn-light">Избриши</button></a>
-                                <button type="button" class="btn btn-light"><i class="fa fa-shopping-cart"></i> </button>
+                                <form action='/charge' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
+                                    <script
+                                            src='https://checkout.stripe.com/checkout.js'
+                                            class='stripe-button'
+                                            th:attr='data-key=pk_test_51HosdYHsQ3mpE3xDaJ9uA787EPFeupxZAFCw8VIqgcgMEbaWWGDWXlBMKH3WCJdTD5qT90oB3nESFXVLL2xe2CWO00wJjKtUsY,data-amount=${p.getPrice()}'
+                                            data-description='Product Checkout'
+                                            data-image=https://www.flaticon.com/svg/static/icons/svg/1235/1235333.svg ,data-locale='auto'
+                                            data-zip-code='false'>
+                                    </script>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -166,9 +169,6 @@
                 </p>
                 <p>
                     <a class="footer-links" href="/us">За Нас</a>
-                </p>
-                <p>
-                    <a class="footer-links" href="Cart">Кошничка</a>
                 </p>
             </div>
             <!-- Grid column -->

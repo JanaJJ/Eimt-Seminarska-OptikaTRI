@@ -30,12 +30,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void saveProductToDB(MultipartFile file, Long id, String name, String description, Long price) {
-
-    }
-
-
-    @Override
     public List<Product> findAllByBrand(Long brandId) {
         List<Product> products=this.productRepository.findAll();
         List<Product> productList = new ArrayList<>();
@@ -72,10 +66,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    @Override
-    public Product updateProduct(Long id, Product product) throws IOException {
-        return null;
-    }
 
     @Override
     @Transactional

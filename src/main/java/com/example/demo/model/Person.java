@@ -15,7 +15,7 @@ public class Person {
     private String address;
     private String email;
     private String password;
-    private boolean active;
+    private boolean status;
 
 
     @ManyToMany(fetch=FetchType.EAGER)
@@ -25,14 +25,14 @@ public class Person {
     private ShoppingCart shoppingCart;
 
 
-    public Person(Long id, String name, String surname, String address, String email, String password, Boolean active,List<Roles> roles, ShoppingCart shoppingCart) {
+    public Person(Long id, String name, String surname, String address, String email, String password, Boolean status,List<Roles> roles, ShoppingCart shoppingCart) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.email = email;
         this.password = password;
-        this.active=active;
+        this.status=status;
 
 
         this.roles = roles;
@@ -55,8 +55,8 @@ public class Person {
         this.password = password;
     }
 
-    public Set<Roles> getRoles() {
-        return (Set<Roles>) roles;
+    public List<Roles> getRoles() {
+        return roles;
     }
 
     public void setRoles(List<Roles> roles) {
@@ -115,12 +115,11 @@ public class Person {
         this.address = address;
     }
 
-
-    public boolean isActive() {
-        return active;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

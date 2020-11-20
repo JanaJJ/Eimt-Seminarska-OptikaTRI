@@ -23,34 +23,34 @@ public class BrandController {
     private ProductService productService;
 
     @RequestMapping("/brG")
-    public String showbyBrandG(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandG(Model model){
         List<Product> products=productService.findAllByBrand(1L);
         model.addAttribute("products",products);
         return "Dioptricglasses";
     }
 
     @RequestMapping("/brB")
-    public String showbyBrandB(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandB(Model model){
         List<Product> products=productService.findAllByBrand(2L);
         model.addAttribute("products",products);
         return "Dioptricglasses";
     }
 
     @RequestMapping("/brT")
-    public String showbyBrandBT(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandBT(Model model){
         List<Product> products=productService.findAllByBrand(3L);
         model.addAttribute("products",products);
         return "Dioptricglasses";
     }
 
     @RequestMapping("/brS")
-    public String showbyBrandBS(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandBS(Model model){
         List<Product> products=productService.findAllByBrand(4L);
         model.addAttribute("products",products);
         return "ChildrenGlasses";
     }
     @RequestMapping("/brL")
-    public String showbyBrandBL(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandBL(Model model){
         List<Product> products=productService.findAllByBrand(5L);
         model.addAttribute("products",products);
         return "ContactLenses";
@@ -59,21 +59,21 @@ public class BrandController {
     ///////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/brGS")
-    public String showbyBrandGSunglasses(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandGSunglasses(Model model){
         List<Product> products=productService.findAllByBrand(1L);
         model.addAttribute("products",products);
         return "Sunglasses";
     }
 
     @RequestMapping("/brBS")
-    public String showbyBrandBSunglasses(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandBSunglasses(Model model){
         List<Product> products=productService.findAllByBrand(2L);
         model.addAttribute("products",products);
         return "Sunglasses";
     }
 
     @RequestMapping("/brTS")
-    public String showbyBrandBTSunglasses(Model model){// ,@PathVariable Long brandId){
+    public String showbyBrandBTSunglasses(Model model){
         List<Product> products=productService.findAllByBrand(3L);
         model.addAttribute("products",products);
         return "Sunglasses";

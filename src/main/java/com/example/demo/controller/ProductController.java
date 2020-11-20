@@ -71,14 +71,6 @@ public class ProductController {
         model.addAttribute("brand",brand);
         return "new_p";
     }
-//    //zacuvaj produkti
-//    @RequestMapping(value = "/save/{catId}",method = RequestMethod.POST)
-//    public String saveForProduct(@ModelAttribute("product") Product product,@PathVariable Long catId){
-//        productService.saveProduct(product);
-//        productService.findAllByCategory(catId);
-//
-//        return "redirect:/home";
-//    }
     //zacuvaj produkti
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String saveForProduct(@ModelAttribute("product") Product product){
@@ -105,45 +97,4 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/allP";
     }
-
-    //////////////////////////////////////////////////////////////////////////
- /*
- @RequestMapping("/brand/{id}")
-    public String brand(Model model,@PathVariable String id){
-
-        List<Product> products = this.productService.findAllProducts();
-        List<Product> productList = new ArrayList<>();
-        for (Product p : products){
-            String name = p.getBrand().getName();
-            if (name.equals(id) ){
-                productList.add(p);
-            }
-        }
-        model.addAttribute("products",productList);
-        return "index";
-    }
-
- @RequestMapping("/{brandId}")
-    public String showbyBrand(Model model ,@PathVariable Long brandId){
-        List<Product> products=productService.findAllByBrand(brandId);
-        model.addAttribute("products",products);
-        return "index";
-    }
-    @RequestMapping("/{categoryId}")
-    public String showbyCategory(Model model ,@PathVariable Long categoryId){
-        Product products=productService.findProductbyId(categoryId);
-        model.addAttribute("products",products);
-        return "index";
-    }
-
-
-    @RequestMapping("/{id}")
-    public String findbyId(Model model ,@PathVariable Long id){
-       Product products=productService.findProductbyId(id);
-       model.addAttribute("products",products);
-        return "index";
-    }
-
-    */
-
 }
